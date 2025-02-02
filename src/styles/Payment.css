@@ -1,0 +1,98 @@
+/* 전체 컨테이너 */
+.payment-container {
+  min-height: 100vh;
+  background-color: #111;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+/* 제목 */
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* 플랜 카드 컨테이너 */
+.plans {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* 개별 플랜 카드 */
+.plan-card {
+  background-color: #222;
+  border: 1px solid #444;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+}
+
+/* 강조된 플랜 */
+.highlighted {
+  border: 2px solid #00c853;
+}
+
+/* 플랜 제목 */
+.plan-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* 가격 스타일 */
+.plan-price {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.price-subtext {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* 기능 목록 */
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.feature-item {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+/* 버튼 스타일 */
+.plan-button {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color: #00c853;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.plan-button:hover {
+  background-color: #009624;
+}
+
+/* 비활성화된 버튼 */
+.plan-button.disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}

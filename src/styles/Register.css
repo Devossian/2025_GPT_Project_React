@@ -1,0 +1,40 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #000;
+  color: white;
+}
+
+input {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #444;
+  background-color: #222;
+  color: white;
+}
+
+.register-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+}
+
+.login-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  text-decoration: underline;
+}
