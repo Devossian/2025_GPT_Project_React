@@ -67,3 +67,43 @@
 .purchase-button:hover {
   background-color: #218838;
 }
+
+.purchase-button:disabled {
+  cursor: not-allowed;
+  background-color: #ddd;
+}
+
+.purchase-button.loading {
+  background-color: #ffc107;
+  position: relative;
+}
+
+.purchase-button.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fff;
+  border-top: 3px solid #ff6600;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .payment-container {
+    width: 100%;
+  }
+}
