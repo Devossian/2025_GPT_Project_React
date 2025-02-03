@@ -1,4 +1,4 @@
-import "../styles/payment.css";
+import "../styles/Payment.css";
 
 interface Plan {
   name: string;
