@@ -1,98 +1,69 @@
-/* 전체 컨테이너 */
 .payment-container {
-  min-height: 100vh;
-  background-color: #111;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 50px;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
 }
 
-/* 제목 */
-.title {
-  font-size: 2rem;
-  font-weight: bold;
+.token-balance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  font-size: 18px;
   margin-bottom: 20px;
 }
 
-/* 플랜 카드 컨테이너 */
-.plans {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+.token-balance strong {
+  color: #ff6600;
 }
 
-/* 개별 플랜 카드 */
-.plan-card {
-  background-color: #222;
-  border: 1px solid #444;
-  padding: 20px;
-  border-radius: 10px;
-  width: 250px;
-  text-align: center;
-  transition: transform 0.2s ease-in-out;
-}
-
-.plan-card:hover {
-  transform: translateY(-5px);
-}
-
-/* 강조된 플랜 */
-.highlighted {
-  border: 2px solid #00c853;
-}
-
-/* 플랜 제목 */
-.plan-name {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-/* 가격 스타일 */
-.plan-price {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-.price-subtext {
-  font-size: 0.8rem;
-  color: #aaa;
-}
-
-/* 기능 목록 */
-.plan-features {
-  list-style: none;
-  padding: 0;
-  margin-top: 15px;
-}
-
-.feature-item {
-  font-size: 0.9rem;
-  margin-bottom: 5px;
-}
-
-/* 버튼 스타일 */
-.plan-button {
-  margin-top: 15px;
-  padding: 10px;
-  width: 100%;
+.charge-button {
+  padding: 10px 15px;
+  background-color: #ff6600;
+  color: white;
   border: none;
   border-radius: 5px;
-  background-color: #00c853;
-  color: white;
-  font-weight: bold;
   cursor: pointer;
 }
 
-.plan-button:hover {
-  background-color: #009624;
+.token-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-/* 비활성화된 버튼 */
-.plan-button.disabled {
-  background-color: #666;
-  cursor: not-allowed;
+.token-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.token-amount {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.token-price {
+  font-size: 18px;
+  color: #ff6600;
+}
+
+.purchase-button {
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.purchase-button:hover {
+  background-color: #218838;
 }
