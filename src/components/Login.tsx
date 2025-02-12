@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import '../styles/Login.css';
 
 const Login = () => {
@@ -23,8 +23,8 @@ const Login = () => {
 
       // 로그인 후 대시보드로 이동
       navigate('/dashboard');
-    } catch (err: any) {
-      if (err.response) {
+    } catch (err: unknown) {
+      if (err instanceof AxiosError && err.response) {
         // 서버에서 오류 메시지가 있으면 그 메시지 표시
         setError(err.response.data.message);
       } else {

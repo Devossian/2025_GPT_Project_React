@@ -13,15 +13,13 @@ const Chat = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 채팅창 자동 스크롤
     chatBoxRef.current?.scrollTo({ top: chatBoxRef.current.scrollHeight, behavior: 'smooth' });
   }, [messages]);
 
   useEffect(() => {
-    // 입력창 크기 자동 조절
     if (inputRef.current) {
-      inputRef.current.style.height = '40px'; // 최소 높이
-      inputRef.current.style.height = `${Math.min(inputRef.current.scrollHeight, 150)}px`; // 최대 150px까지 늘어나도록
+      inputRef.current.style.height = '40px';
+      inputRef.current.style.height = `${Math.min(inputRef.current.scrollHeight, 150)}px`;
     }
   }, [input]);
 

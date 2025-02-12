@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import '../styles/NavBar.css';  // 스타일 파일을 따로 추가합니다.
-
+import '../styles/NavBar.css';
 const NavBar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
