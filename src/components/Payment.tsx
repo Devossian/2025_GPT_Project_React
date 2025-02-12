@@ -21,7 +21,7 @@ const Payment = () => {
 
   const handlePurchase = async (amount: number) => {
     if (window.TossPayments) {
-      const tossPayments = window.TossPayments("test_ck_Ox..."); // 클라이언트 키
+      const tossPayments = window.TossPayments("test_ck_Z1aOwX7K8m7wYLo7vxMaVyQxzvNP"); // 클라이언트 키
 
       try {
         setLoading(true);  // 로딩 시작
@@ -69,6 +69,7 @@ const Payment = () => {
           alert(confirmData.message);  // "결제 승인 완료" 메시지 표시
         });
       } catch (error) {
+        console.error("결제 세션 생성 실패", error);
         alert('결제 세션 생성 실패');
       } finally {
         setLoading(false);  // 로딩 종료

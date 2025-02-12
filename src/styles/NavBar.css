@@ -1,24 +1,56 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
   background-color: #333;
   color: white;
-  align-items: center;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.links {
+  padding: 10px 20px;
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
-.link {
+.sidebar-toggle {
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  transition: 0.3s;
+  padding-top: 60px;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 10px 20px;
   color: white;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 18px;
+}
+
+.sidebar-link:hover {
+  background-color: #575757;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
 }

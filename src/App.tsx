@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import Home from './pages/Home';
 import Chat from './pages/Chat';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -11,7 +10,7 @@ const App = () => {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Chat />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

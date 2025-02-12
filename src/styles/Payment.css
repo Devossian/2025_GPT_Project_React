@@ -1,8 +1,24 @@
+body {
+  font-family: 'Pretendard', sans-serif;
+}
+
 .payment-container {
-  width: 50%;
-  margin: 0 auto;
-  padding: 20px;
+  width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: none;
+  /* 박스 그림자 제거 */
   text-align: center;
+  border: 1px solid #ddd;
+  /* 네이버 시리즈 스타일 */
+}
+
+.payment-header {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .token-balance {
@@ -10,29 +26,23 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  font-size: 18px;
-  margin-bottom: 20px;
+  background: #f8f8f8;
+  /* 연한 회색 배경 */
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333333;
+  /* 검은색 글씨 */
 }
 
 .token-balance strong {
   color: #ff6600;
-}
-
-.charge-button {
-  padding: 10px 15px;
-  background-color: #ff6600;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  /* 토큰 개수 강조 */
 }
 
 .token-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 .token-item {
@@ -40,70 +50,49 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px;
+  background: #ffffff;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #333333;
+}
+
+.token-item:hover {
+  background: #fff3e0;
+  border-color: #ff6600;
+}
+
+.token-left {
+  text-align: left;
 }
 
 .token-amount {
-  font-size: 18px;
   font-weight: bold;
+  color: #333333;
 }
 
 .token-price {
-  font-size: 18px;
   color: #ff6600;
 }
 
 .purchase-button {
-  padding: 10px 15px;
-  background-color: #28a745;
+  width: 100px;
+  padding: 10px;
+  background: #ff6600;
   color: white;
   border: none;
   border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
 }
 
 .purchase-button:hover {
-  background-color: #218838;
-}
-
-.purchase-button:disabled {
-  cursor: not-allowed;
-  background-color: #ddd;
-}
-
-.purchase-button.loading {
-  background-color: #ffc107;
-  position: relative;
-}
-
-.purchase-button.loading::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  border: 3px solid #fff;
-  border-top: 3px solid #ff6600;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  transform: translate(-50%, -50%);
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  background: #e65c00;
 }
 
 @media (max-width: 768px) {
   .payment-container {
-    width: 100%;
+    width: 90%;
   }
 }
