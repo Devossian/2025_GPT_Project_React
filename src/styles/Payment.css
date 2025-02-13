@@ -1,98 +1,93 @@
-/* 전체 컨테이너 */
+body {
+  font-family: 'Pretendard', sans-serif;
+}
+
 .payment-container {
-  min-height: 100vh;
-  background-color: #111;
-  color: white;
+  width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: none;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.payment-header {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.token-balance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #f8f8f8;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333333;
+}
+
+.token-balance strong {
+  color: #ff6600;
+}
+
+.token-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 50px;
+  gap: 10px;
 }
 
-/* 제목 */
-.title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-/* 플랜 카드 컨테이너 */
-.plans {
+.token-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #333333;
 }
 
-/* 개별 플랜 카드 */
-.plan-card {
-  background-color: #222;
-  border: 1px solid #444;
-  padding: 20px;
-  border-radius: 10px;
-  width: 250px;
-  text-align: center;
-  transition: transform 0.2s ease-in-out;
+.token-item:hover {
+  background: #fff3e0;
+  border-color: #ff6600;
 }
 
-.plan-card:hover {
-  transform: translateY(-5px);
+.token-left {
+  text-align: left;
 }
 
-/* 강조된 플랜 */
-.highlighted {
-  border: 2px solid #00c853;
-}
-
-/* 플랜 제목 */
-.plan-name {
-  font-size: 1.5rem;
+.token-amount {
   font-weight: bold;
+  color: #333333;
 }
 
-/* 가격 스타일 */
-.plan-price {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-top: 10px;
+.token-price {
+  color: #ff6600;
 }
 
-.price-subtext {
-  font-size: 0.8rem;
-  color: #aaa;
-}
-
-/* 기능 목록 */
-.plan-features {
-  list-style: none;
-  padding: 0;
-  margin-top: 15px;
-}
-
-.feature-item {
-  font-size: 0.9rem;
-  margin-bottom: 5px;
-}
-
-/* 버튼 스타일 */
-.plan-button {
-  margin-top: 15px;
+.purchase-button {
+  width: 100px;
   padding: 10px;
-  width: 100%;
+  background: #ff6600;
+  color: white;
   border: none;
   border-radius: 5px;
-  background-color: #00c853;
-  color: white;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.plan-button:hover {
-  background-color: #009624;
+.purchase-button:hover {
+  background: #e65c00;
 }
 
-/* 비활성화된 버튼 */
-.plan-button.disabled {
-  background-color: #666;
-  cursor: not-allowed;
+@media (max-width: 768px) {
+  .payment-container {
+    width: 90%;
+  }
 }
