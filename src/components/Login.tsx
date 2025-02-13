@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
+import axiosInstance from "./axiosInstance";
 import '../styles/Login.css';
 
 const Login = () => {
@@ -13,7 +14,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/user/login', {
+      const response = await axiosInstance.post('/user/login', {
         username,
         password,
       });
