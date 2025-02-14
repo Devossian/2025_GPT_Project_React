@@ -18,6 +18,7 @@ const Register = () => {
   const [error, setError] = useState<{ field?: string; message: string } | null>(null);
   const [showPassword1, setShowPassword1] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -37,6 +38,7 @@ const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     if (form.password1 !== form.password2) {
       setError({ field: "password", message: "비밀번호가 일치하지 않습니다." });
       return;
@@ -57,6 +59,8 @@ const Register = () => {
       } else {
         setError({ message: "서버와의 연결에 실패했습니다." });
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -101,7 +105,7 @@ const Register = () => {
 
         <input type="text" name="verification_code" placeholder="인증 코드" value={form.verification_code} onChange={handleChange} required />
 
-        <button type="submit" className="register-button">회원가입</button>
+        <button type="submit" className="register-button" disabled={loading}>{loading?'회원가입 중...':'회원가입'}</button>
         <button type="button" className="login-button" onClick={() => navigate("/login")}>로그인</button>
       </form>
     </div>
