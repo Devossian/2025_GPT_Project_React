@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from "../api/axiosInstance";
 import { useNavigate } from 'react-router-dom';
 import '../styles/Chat.css';
 
@@ -32,7 +32,7 @@ const Chat = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('/chat/send-message', {
+      const response = await axiosInstance.post('/chat/send-message', {
         message: input,
         model: 'gpt-4',
         roomid: roomId,
@@ -51,7 +51,7 @@ const Chat = () => {
     if (!input.trim()) return alert('질문을 입력해주세요.');
 
     try {
-      const response = await axios.post('/create-room', {
+      const response = await axiosInstance.post('/create-room', {
         room_name: input,
       });
 
