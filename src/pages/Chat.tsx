@@ -32,11 +32,18 @@ const Chat = () => {
     setLoading(true);
 
     try {
+      const token = localStorage.getItem('token');
+
       const response = await axiosInstance.post('/chat/send-message', {
         message: input,
         model: 'gpt-4',
         roomid: roomId,
-      });
+      },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
       setMessages((prev) => [...prev, { text: response.data.message, sender: 'gpt' }]);
     } catch (error) {

@@ -16,7 +16,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      
+
       const response = await axiosInstance.post('/user/login', {
         username,
         password,
@@ -35,7 +35,7 @@ const Login = () => {
         // 네트워크 오류 등 처리
         setError('서버 오류가 발생했습니다. 다시 시도해 주세요.');
       }
-    } finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -57,7 +57,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         {error && <p className="error-message">{error}</p>}
-        <button type="submit" disabled={loading}>{loading?'로그인 중...' : '로그인'}</button>
+        <button type="submit" disabled={loading}>{loading ? '로그인 중...' : '로그인'}</button>
 
         <button className="register-button" onClick={() => navigate('/register')}>
           회원가입

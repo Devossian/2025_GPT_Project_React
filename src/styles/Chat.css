@@ -76,17 +76,14 @@ h2 {
 
 .chat__input-container {
   display: flex;
+  align-items: center;
   width: 100%;
   gap: 10px;
-  padding: 10px 0;
-  position: sticky;
-  bottom: 0;
-  background: #1e1e1e;
 }
 
 .chat__input {
-  flex-grow: 1;
-  min-height: 40px;
+  flex: 1;
+  min-height: 50px;
   max-height: 200px;
   padding: 12px;
   border: none;
@@ -97,8 +94,6 @@ h2 {
   font-size: 16px;
   resize: vertical;
   overflow-y: auto;
-  word-wrap: break-word;
-  white-space: pre-wrap;
 }
 
 .chat__input::-webkit-scrollbar {
@@ -111,7 +106,8 @@ h2 {
 }
 
 .chat__button {
-  padding: 12px 20px;
+  height: 50px;
+  padding: 0 20px;
   background-color: #007aff;
   color: white;
   border: none;
