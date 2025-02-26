@@ -74,6 +74,13 @@ h2 {
   color: white;
 }
 
+.chat__message.user {
+  align-self: flex-end;
+  border: 1px solid red;
+  background-color: rgb(138, 0, 0);
+  color: white;
+}
+
 .chat__input-container {
   display: flex;
   width: 100%;

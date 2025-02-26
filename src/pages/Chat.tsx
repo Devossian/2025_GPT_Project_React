@@ -1,16 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import axiosInstance from "../api/axiosInstance";
-import { useNavigate } from 'react-router-dom';
 import '../styles/Chat.css';
+import { useParams } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 const Chat = () => {
   const [messages, setMessages] = useState<{ text: string; sender: string }[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [roomId, setRoomId] = useState<string | null>(null);
+  const { roomId } = useParams<{ roomId: string }>();
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const chatBoxRef = useRef<HTMLDivElement | null>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     chatBoxRef.current?.scrollTo({ top: chatBoxRef.current.scrollHeight, behavior: 'smooth' });
@@ -32,36 +32,43 @@ const Chat = () => {
     setLoading(true);
 
     try {
+      const token = localStorage.getItem('token');
       const response = await axiosInstance.post('/chat/send-message', {
         message: input,
-        model: 'gpt-4',
+        model: 'gpt-3.5-turbo',
         roomid: roomId,
+      }, {
+        headers: {
+          'Authorization' : `Token ${token}`
+        }
       });
+
 
       setMessages((prev) => [...prev, { text: response.data.message, sender: 'gpt' }]);
     } catch (error) {
       console.error('Error:', error);
-      alert('메시지 전송에 실패했습니다. 다시 시도해주세요.');
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  const handleCreateRoom = async () => {
-    if (!input.trim()) return alert('질문을 입력해주세요.');
-
-    try {
-      const response = await axiosInstance.post('/create-room', {
-        room_name: input,
+      // 에러 발생 시 메시지 생긴 꼬라지 변경
+      setMessages((prev) => {
+        if (prev.length > 0) {
+          const updatedMessages = [...prev];
+          updatedMessages[updatedMessages.length - 1] = {
+            ...updatedMessages[updatedMessages.length - 1],
+            sender: 'user-error',
+          };
+          return updatedMessages;
+        }
+        return prev;
       });
 
-      setRoomId(response.data.roomid);
-      alert('새로운 채팅방이 생성되었습니다!');
-      setInput('');
-      navigate(`/chat/${response.data.roomid}`);
-    } catch (error) {
-      console.error('채팅방 생성 실패:', error);
-      alert('채팅방 생성에 실패했습니다.');
+      if (error instanceof AxiosError && error.response){
+        alert(error.response.data.message);
+      } else {
+        alert("알 수 없는 에러가 발생했습니다.")
+      }
+      
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -76,8 +83,6 @@ const Chat = () => {
     <div className="chat">
       <h1>Chat with GPT</h1>
       <div className="chat__container">
-        {roomId ? (
-          <>
             <h2>채팅방: {roomId}</h2>
             <div className="chat__box" ref={chatBoxRef}>
               {messages.map((message, index) => (
@@ -97,26 +102,8 @@ const Chat = () => {
                 disabled={loading}
                 rows={1}
               />
-              <button onClick={handleSendMessage} className="chat__button" disabled={loading}>
-                {loading ? 'Sending...' : 'Send'}
-              </button>
-            </div>
-          </>
-        ) : (
-          <>
-            <h2>새로운 채팅방 만들기</h2>
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="chat__room-input"
-              placeholder="채팅방 이름 입력..."
-            />
-            <button onClick={handleCreateRoom} className="chat__button">
-              메세지 보내기
-            </button>
-          </>
-        )}
+              <button onClick={handleSendMessage} className="chat__button" disabled={loading}>{loading ? 'Sending...' : 'Send'}</button>
+        </div>
       </div>
     </div>
   );

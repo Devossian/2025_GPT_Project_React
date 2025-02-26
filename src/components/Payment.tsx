@@ -1,5 +1,6 @@
 import "../styles/Payment.css";
 import { useState } from "react";
+import axiosInstance from "../api/axiosInstance";
 
 // 토큰 데이터
 const tokens = [
@@ -18,6 +19,7 @@ interface PaymentData {
 const Payment = () => {
   const [userTokens] = useState(0); // 보유한 토큰 상태
   const [loading, setLoading] = useState(false);  // 로딩 상태
+  const baseUrl = window.location.origin;
 
   const handlePurchase = async (amount: number) => {
     if (window.TossPayments) {
@@ -27,47 +29,47 @@ const Payment = () => {
         setLoading(true);  // 로딩 시작
 
         // 결제 세션 생성 요청 (백엔드 API 호출)
-        const response = await fetch('/payment/payment-session', {
-          method: 'POST',
+        const token = localStorage.getItem('token');
+        const response = await axiosInstance.post('/payment/payment-session', {
+          custom_key: 'user123',
+          amount,
+        }, {
           headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ custom_key: 'user123', amount }), // custom_key와 amount는 서버에서 처리하는 부분
+            'Authorization' : `Token ${token}`
+          }
         });
 
-        const data = await response.json();
+        const data = await response.data;
         const orderId = data.order_id;  // 백엔드에서 반환받은 order_id
 
         // 토스페이먼츠 결제 요청
         tossPayments.requestPayment("카드", {
-          amount,
-          orderId,
+          amount: amount,
+          orderId: orderId,
           orderName: `토큰 ${amount}개`,
-          customerEmail: "user@example.com", // 사용자의 이메일
-          successUrl: "http://localhost:3000/success", // 결제 성공 시 리디렉션 URL
-          failUrl: "http://localhost:3000/fail", // 결제 실패 시 리디렉션 URL
+          customerName: "user@example.com", // 사용자의 이메일
+          successUrl: `${baseUrl}/success`, // 결제 성공 시 리디렉션 URL
+          failUrl: `${baseUrl}/fail`, // 결제 실패 시 리디렉션 URL
         });
 
         // 결제 성공 시 이벤트 처리
-        tossPayments.on('payment_success', async (paymentData: PaymentData) => {
+        /*tossPayments.on('payment_success', async (paymentData: PaymentData) => {
           const { orderId, amount, paymentKey } = paymentData;
 
           // 결제 승인 요청 (백엔드 API 호출)
-          const confirmResponse = await fetch('/payment/confirm', {
-            method: 'POST',
+          const confirmResponse = await axiosInstance.post('/payment/confirm', {
+            orderId: orderId,
+            amount: amount,
+            paymentKey: paymentKey
+          }, {
             headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              orderId,
-              amount,
-              paymentKey, // 결제 성공 시 받은 paymentKey
-            }),
+              'Authorization' : `Token ${token}`
+            }
           });
 
-          const confirmData = await confirmResponse.json();
+          const confirmData = await confirmResponse.data;
           alert(confirmData.message);  // "결제 승인 완료" 메시지 표시
-        });
+        });*/
       } catch (error) {
         console.error("결제 세션 생성 실패", error);
         alert('결제 세션 생성 실패');

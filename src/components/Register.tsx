@@ -39,17 +39,18 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    if (form.password1 !== form.password2) {
-      setError({ field: "password", message: "비밀번호가 일치하지 않습니다." });
-      return;
-    }
-    const passwordError = validatePassword(form.password1, form.username);
-    if (passwordError) {
-      setError({ field: "password", message: passwordError });
-      return;
-    }
-
+    setError(null);
     try {
+      if (form.password1 !== form.password2) {
+        setError({ field: "password", message: "비밀번호가 일치하지 않습니다." });
+        return;
+      }
+      const passwordError = validatePassword(form.password1, form.username);
+      if (passwordError) {
+        setError({ field: "password", message: passwordError });
+        return;
+      }
+
       await axiosInstance.post("/user/signup", form);
       alert("회원가입이 완료되었습니다!");
       navigate("/login");

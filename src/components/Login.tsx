@@ -57,7 +57,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         {error && <p className="error-message">{error}</p>}
-        <button type="submit" disabled={loading}>{loading?'로그인 중...' : '로그인'}</button>
+        <button type="submit" className={loading?'loading':''} disabled={loading}>{loading?'로그인 중...' : '로그인'}</button>
 
         <button className="register-button" onClick={() => navigate('/register')}>
           회원가입
