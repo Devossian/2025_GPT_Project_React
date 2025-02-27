@@ -10,11 +10,11 @@ const tokens = [
 ];
 
 // paymentData의 타입 정의
-interface PaymentData {
+/*interface PaymentData {
   orderId: string;
   amount: number;
   paymentKey: string;
-}
+}*/
 
 const Payment = () => {
   const [userTokens] = useState(0); // 보유한 토큰 상태
