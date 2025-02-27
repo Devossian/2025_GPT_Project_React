@@ -4,6 +4,12 @@ import '../styles/Chat.css';
 import { useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
 
+type Message = { // 서버에서 날려주는 메시지 이력이 가지는 key들 정의(이따 get 요청 날릴 때 쓰임)
+  senderid: number;
+  content: string;
+  timestamp: string;
+}
+
 const Chat = () => {
   const [messages, setMessages] = useState<{ text: string; sender: string }[]>([]);
   const [input, setInput] = useState('');
@@ -22,6 +28,34 @@ const Chat = () => {
       inputRef.current.style.height = `${Math.min(inputRef.current.scrollHeight, 150)}px`;
     }
   }, [input]);
+
+  useEffect(() => { // 채팅 이력 가져오기
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axiosInstance.get("/chat?",{
+          headers: {
+            'Authorization' : `Token ${token}`,
+          },
+          params: {
+            'roomid':roomId
+          }
+      });
+        const convertedMessages = response.data.messages.map((msg : Message) => ({
+          text: msg.content,
+          sender: (msg.senderid == 0) ? 'gpt' : 'user',
+        }));
+        console.log(convertedMessages)
+        setMessages((prev) => [...prev, ...convertedMessages]);
+        console.log(messages)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+    
+  }, [])
 
   const handleSendMessage = async () => {
     if (!input.trim()) return;
@@ -48,7 +82,7 @@ const Chat = () => {
     } catch (error) {
       console.error('Error:', error);
 
-      // 에러 발생 시 메시지 생긴 꼬라지 변경
+      // 에러 발생 시 메시지 북한군으로 변경
       setMessages((prev) => {
         if (prev.length > 0) {
           const updatedMessages = [...prev];
