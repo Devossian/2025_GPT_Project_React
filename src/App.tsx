@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import CreateChat from './pages/CreateChat';
 import Chat from './pages/Chat';
+import Success from './pages/success';
 import Login from './components/Login';
 import Register from './components/Register';
 import Payment from './components/Payment';
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
     </Router>
   );

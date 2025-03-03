@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import axiosInstance from "../api/axiosInstance";
@@ -10,6 +10,22 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      try{
+        const token = localStorage.getItem("token");
+        if(token){
+          alert("이미 로그인 된 상태입니다!");
+          navigate('/lobby');
+        }
+      }catch{
+        alert("오류 발생!");
+      };
+    }
+
+    checkLogin();
+  });
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
