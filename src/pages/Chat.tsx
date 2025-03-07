@@ -10,7 +10,11 @@ type Message = { // 서버에서 날려주는 메시지 이력이 가지는 key�
   timestamp: string;
 }
 
-const Chat = () => {
+interface ChatProps{
+  setBalance: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Chat: React.FC<ChatProps> = ({setBalance}) => {
   const [messages, setMessages] = useState<{ text: string; sender: string }[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -35,7 +39,7 @@ const Chat = () => {
         const token = localStorage.getItem('token');
         const response = await axiosInstance.get("/chat?",{
           headers: {
-            'Authorization' : `Token ${token}`,
+            'Authorization' : `Bearer ${token}`,
           },
           params: {
             'roomid':roomId
@@ -73,16 +77,17 @@ const Chat = () => {
         roomid: roomId,
       }, {
         headers: {
-          'Authorization' : `Token ${token}`
+          'Authorization' : `Bearer ${token}`
         }
       });
 
 
       setMessages((prev) => [...prev, { text: response.data.message, sender: 'gpt' }]);
+      setBalance(response.data.balance);
     } catch (error) {
       console.error('Error:', error);
 
-      // 에러 발생 시 메시지 북한군으로 변경
+      // 에러 발생 시 메시지 빨갱이로 변경
       setMessages((prev) => {
         if (prev.length > 0) {
           const updatedMessages = [...prev];

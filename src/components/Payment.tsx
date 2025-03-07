@@ -35,7 +35,7 @@ const Payment = () => {
           amount,
         }, {
           headers: {
-            'Authorization' : `Token ${token}`
+            'Authorization' : `Bearer ${token}`
           }
         });
 

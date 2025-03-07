@@ -4,7 +4,11 @@ import { AxiosError } from 'axios';
 import axiosInstance from "../api/axiosInstance";
 import '../styles/Login.css';
 
-const Login = () => {
+interface LoginProps { // 유저 프롭스
+  setUser: React.Dispatch<React.SetStateAction<{ username: string } | null>>;
+}
+
+const Login: React.FC<LoginProps> = ({ setUser }) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -40,6 +44,8 @@ const Login = () => {
 
       // 로그인 성공 시, 서버에서 받은 토큰을 로컬 스토리지에 저장
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('username', response.data.username);
+      setUser({ username: username});
 
       // 로그인 후 대시보드로 이동
       navigate('/dashboard');

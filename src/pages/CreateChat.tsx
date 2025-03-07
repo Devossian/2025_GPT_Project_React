@@ -24,7 +24,7 @@ const Chat = () => {
         room_name: input,
       }, {
         headers: {
-          'Authorization' : `Token ${token}`
+          'Authorization' : `Bearer ${token}`
         }
       });
 

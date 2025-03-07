@@ -33,7 +33,7 @@ const Success = () => {
                 },
                 {
                     headers: {
-                    Authorization: `Token ${token}`,
+                    Authorization: `Bearer ${token}`,
                     },
                 }
                 );
