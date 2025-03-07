@@ -10,11 +10,7 @@ interface ChatRoom {
   messages: string[],
 }
 
-interface NavBarProps { // User props 받기 위한 인터페이스
-  user: { username: string } | null;
-}
-
-const Lobby: React.FC<NavBarProps> = ({user}) => {
+const Lobby = () => {
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
 
   useEffect(() => {

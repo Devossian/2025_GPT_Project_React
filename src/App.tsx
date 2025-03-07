@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import CreateChat from './pages/CreateChat';
 import Chat from './pages/Chat';
@@ -72,7 +72,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/success" element={<Success />} />
-        <Route path="/lobby" element={<Lobby user={user} />} />
+        <Route path="/lobby" element={<Lobby />} />
       </Routes>
     </>
   );
