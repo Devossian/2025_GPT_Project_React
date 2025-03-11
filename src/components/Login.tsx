@@ -48,7 +48,7 @@ const Login: React.FC<LoginProps> = ({ setUser }) => {
       setUser({ username: username});
 
       // 로그인 후 대시보드로 이동
-      navigate('/dashboard');
+      navigate('/Home');
     } catch (err: unknown) {
       if (err instanceof AxiosError && err.response) {
         // 서버에서 오류 메시지가 있으면 그 메시지 표시

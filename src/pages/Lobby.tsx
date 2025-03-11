@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axiosInstance from "../api/axiosInstance";
+import '../styles/Lobby.css';
 
 interface ChatRoom {
   roomid: string,
@@ -22,7 +23,6 @@ const Lobby = () => {
         },
       })
         .then(response => {
-          console.log(response.data.rooms);
           setChatRooms(response.data.rooms);
         })
         .catch(error => {
@@ -34,10 +34,16 @@ const Lobby = () => {
   return (
     <div className="lobby">
       <h1>채팅방 목록</h1>
-      <ul>
+      <ul className="chat-room-list">
         {chatRooms.map((room) => (
-          <li key={room.roomid}>
-            <Link to={`/chat/${room.roomid}`}>{room.roomid}</Link>
+          <li key={room.roomid} className="chat-room">
+            <div className="chat-room-content">
+              <span className="chat-room-title">{room.roomid}</span>
+              {/* room.name을 사용하고 싶으면 {room.name}으로 변경 */}
+              <Link to={`/chat/${room.roomid}`}>
+                <button className="enter-button">입장</button>
+              </Link>
+            </div>
           </li>
         ))}
       </ul>

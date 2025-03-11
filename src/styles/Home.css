@@ -49,6 +49,10 @@ main p {
   color: #cccccc;
 }
 
+.page {
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   header {
     flex-direction: column;

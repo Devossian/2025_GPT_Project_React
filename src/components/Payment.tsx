@@ -9,13 +9,6 @@ const tokens = [
   { amount: 5000, price: "5,000원" },
 ];
 
-// paymentData의 타입 정의
-/*interface PaymentData {
-  orderId: string;
-  amount: number;
-  paymentKey: string;
-}*/
-
 const Payment = () => {
   const [userTokens] = useState(0); // 보유한 토큰 상태
   const [loading, setLoading] = useState(false);  // 로딩 상태
@@ -31,7 +24,7 @@ const Payment = () => {
         // 결제 세션 생성 요청 (백엔드 API 호출)
         const token = localStorage.getItem('token');
         const response = await axiosInstance.post('/payment/payment-session', {
-          custom_key: 'user123',
+          custom_key: 'user123', // custom_key는 백엔드 User DB에 저장되어있음
           amount,
         }, {
           headers: {
@@ -51,25 +44,6 @@ const Payment = () => {
           successUrl: `${baseUrl}/success`, // 결제 성공 시 리디렉션 URL
           failUrl: `${baseUrl}/fail`, // 결제 실패 시 리디렉션 URL
         });
-
-        // 결제 성공 시 이벤트 처리
-        /*tossPayments.on('payment_success', async (paymentData: PaymentData) => {
-          const { orderId, amount, paymentKey } = paymentData;
-
-          // 결제 승인 요청 (백엔드 API 호출)
-          const confirmResponse = await axiosInstance.post('/payment/confirm', {
-            orderId: orderId,
-            amount: amount,
-            paymentKey: paymentKey
-          }, {
-            headers: {
-              'Authorization' : `Token ${token}`
-            }
-          });
-
-          const confirmData = await confirmResponse.data;
-          alert(confirmData.message);  // "결제 승인 완료" 메시지 표시
-        });*/
       } catch (error) {
         console.error("결제 세션 생성 실패", error);
         alert('결제 세션 생성 실패');

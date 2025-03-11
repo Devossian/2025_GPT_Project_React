@@ -1,0 +1,33 @@
+.lobby {
+    padding: 20px;
+  }
+  
+  .chat-room-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .chat-room {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .chat-room-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .chat-room-title {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .enter-button {
+    padding: 5px 10px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  

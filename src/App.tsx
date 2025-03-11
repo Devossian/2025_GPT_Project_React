@@ -8,6 +8,8 @@ import Register from './components/Register';
 import Payment from './components/Payment';
 import Lobby from './pages/Lobby';
 import { useEffect, useState } from 'react';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
 
 interface User {
   username: string;
@@ -65,7 +67,7 @@ const App = () => {
     <>
       <NavBar user={user} balance={balance} setBalance={setBalance}/>
       <Routes>
-        <Route path="/" element={<CreateChat />} />
+        <Route path="/" element={<Home />} />
         <Route path="/chat" element={<CreateChat />} />
         <Route path="/chat/:roomId" element={<Chat setBalance={setBalance} />} />
         <Route path="/login" element={<Login setUser={setUser}/>} />
@@ -73,6 +75,8 @@ const App = () => {
         <Route path="/payment" element={<Payment />} />
         <Route path="/success" element={<Success />} />
         <Route path="/lobby" element={<Lobby />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/profile" element={<Profile user={user} balance={balance} />} />
       </Routes>
     </>
   );

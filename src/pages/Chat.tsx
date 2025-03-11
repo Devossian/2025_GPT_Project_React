@@ -49,9 +49,7 @@ const Chat: React.FC<ChatProps> = ({setBalance}) => {
           text: msg.content,
           sender: (msg.senderid == 0) ? 'gpt' : 'user',
         }));
-        console.log(convertedMessages)
         setMessages((prev) => [...prev, ...convertedMessages]);
-        console.log(messages)
       } catch (error) {
         console.error("Error fetching data:", error);
       }

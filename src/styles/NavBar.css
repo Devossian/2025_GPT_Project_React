@@ -8,6 +8,13 @@
   position: relative;
 }
 
+.navbar h1 {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #575757;
+}
+
 .sidebar-toggle {
   font-size: 30px;
   background: none;

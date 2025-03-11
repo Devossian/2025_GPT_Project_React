@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import axiosInstance from "../api/axiosInstance";
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const Success = () => {
     const [searchParams] = useSearchParams();
     const didRunRef = useRef(false);
     const [status, setStatus] = useState("processing");
+    const navigate = useNavigate();
   
     useEffect(() => {
         if (didRunRef.current) return; // 디버그 때 두 번 실행되는거 방지
@@ -41,6 +42,7 @@ const Success = () => {
                 const confirmData = confirmResponse.data;
                 setStatus("success"); // 성공 상태로 업데이트
                 alert(confirmData.message); // "결제 승인 완료" 메시지 표시
+                navigate('/home');
             } catch (error) {
                 console.error("결제 승인 요청 중 오류 발생", error);
                 setStatus("fail"); // 실패 상태로 업데이트
